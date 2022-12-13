@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simplesaml8
+spec:
+  selector:
+   matchLabels:
+    app: simplesaml8
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: simplesaml8
+        role: simplesaml8
+    spec:
+      containers:
+        - name: simplesaml8
+          image: udecdj2022/simplesaml8:latest
+            #imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+              name: simplesaml8
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: simplesaml8
+  labels:
+    app: simplesaml8
+spec:
+  selector:
+   app: simplesaml8
+  type: LoadBalancer
+  ports:
+   - name: http
+     port: 80
+     protocol: TCP
+     targetPort: 80
+  selector:
+    role: simplesaml8
+

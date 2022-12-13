@@ -1,0 +1,56 @@
+# ingress.yml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  labels:
+    app: nginx-ingress
+  annotations:
+    #nginx.ingress.kubernetes.io/rewrite-target: /$1
+     cert-manager.io/cluster-issuer: lets-encryp-production
+spec:
+ tls:
+ - hosts:
+   - datacenter.ucol.mx
+   - pre-datacenter.ucol.mx
+   secretName: microbot-ingress-tls
+ rules:
+  - host: "datacenter.ucol.mx"
+    http:
+      paths:
+      - pathType: Prefix
+        path: /DELL
+        backend:
+          service:
+            name: phpmyadmin-service
+            port:
+              number: 80
+
+      - pathType: Prefix
+        path: /proyecto
+        backend:
+          service:
+            name: proyecto
+            port:
+              number: 80
+
+      - pathType: Prefix
+        path: /simplesaml
+        backend:
+          service:
+            name: proyecto
+            port:
+              number: 80
+          
+
+  - host: "pre-datacenter.ucol.mx"
+    http:
+      paths:
+      - pathType: Prefix
+        path: /baymax
+        backend:
+          service:
+            name: baymax
+            port:
+              number: 80
+

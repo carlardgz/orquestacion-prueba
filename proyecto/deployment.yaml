@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proyecto
+spec:
+  selector:
+   matchLabels:
+    app: proyecto
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: proyecto
+        role: proyecto
+    spec:
+      containers:
+        - name: proyecto
+          image: udecdj2022/proyecto:haep
+            #imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+              name: proyecto
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: proyecto
+  labels:
+    app: proyecto
+spec:
+  selector:
+   app: proyecto
+  type: ClusterIP
+  ports:
+   - name: http
+     port: 80
+     protocol: TCP
+     targetPort: 80
+  selector:
+    role: proyecto
+
+
