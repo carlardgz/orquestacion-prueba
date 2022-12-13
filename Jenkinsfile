@@ -49,14 +49,14 @@ pipeline {
 
    stage('Restarting POD'){
    steps{
-    sshagent(['kubernetessh'])
+    sshagent(['rodriguezssh'])
     {
      sh 'scp -r -o StrictHostKeyChecking=no /proyecto/deployment.yaml digesetuser@148.213.5.79:/home/digesetuser/'
       script{
         try{
-           sh 'ssh digesetuser@148.213.5.79 microk8s.kubectl apply -f  /proyecto/deployment.yaml --kubeconfig=/home/digesetuser/.kube/config'
-           sh 'ssh digesetuser@148.213.5.79 microk8s.kubectl rollout restart deployment proyecto --kubeconfig=/home/digesetuser/.kube/config' 
-           sh 'ssh digesetuser@148.213.5.79 microk8s.kubectl rollout status deployment proyecto --kubeconfig=/home/digesetuser/.kube/config'
+           sh 'ssh digesetuser@148.213.1.131 microk8s.kubectl apply -f  /proyecto/deployment.yaml --kubeconfig=/home/digesetuser/.kube/config'
+           sh 'ssh digesetuser@148.213.1.131 microk8s.kubectl rollout restart deployment proyecto --kubeconfig=/home/digesetuser/.kube/config' 
+           sh 'ssh digesetuser@148.213.1.131 microk8s.kubectl rollout status deployment proyecto --kubeconfig=/home/digesetuser/.kube/config'
           }catch(error)
        {}
      }
