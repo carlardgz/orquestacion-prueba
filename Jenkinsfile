@@ -18,7 +18,8 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-         sh 'cd proyecto && dockerImage = docker.build dockerimagename'
+         sh 'cd proyecto'
+	 dockerImage = docker.build dockerimagename'
         }
       }
     }
