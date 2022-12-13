@@ -50,14 +50,9 @@ pipeline {
     sshagent(['kubernetessh'])
     {
      sh 'scp -r -o StrictHostKeyChecking=no /mysql/deployment.yaml digesetuser@148.213.5.79:/home/digesetuser/'
-     //sh 'scp -r -o StrictHostKeyChecking=no /phpmyadmin/deployment.yaml digesetuser@148.213.5.79:/home/digesetuser/'
-     //sh 'scp -r -o StrictHostKeyChecking=no /proyecto/deployment.yaml digesetuser@148.213.5.79:/home/digesetuser/'
       script{
         try{
            sh 'ssh digesetuser@148.213.5.79 microk8s.kubectl apply -f  /mysql/deployment.yaml --kubeconfig=/home/digesetuser/.kube/config'
-	   //sh 'ssh digesetuser@148.213.5.79 microk8s.kubectl apply -f  /phpmyadmin/deployment.yaml --kubeconfig=/home/digesetuser/.kube/config'
-	   //sh 'ssh digesetuser@148.213.5.79 microk8s.kubectl apply -f  /proyecto/deployment.yaml --kubeconfig=/home/digesetuser/.kube/config'
-	  
            sh 'ssh digesetuser@148.213.5.79 microk8s.kubectl rollout restart deployment mysql-deployment --kubeconfig=/home/digesetuser/.kube/config' 
            sh 'ssh digesetuser@148.213.5.79 microk8s.kubectl rollout status deployment mysql-deployment --kubeconfig=/home/digesetuser/.kube/config'
           }catch(error)
