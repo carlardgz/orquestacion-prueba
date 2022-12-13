@@ -17,12 +17,13 @@ pipeline {
 
     stage('Build image') {
       steps{
-        script {
-         sh 'cd proyecto'
-	 dockerImage = docker.build dockerimagename
+	dir('proyecto') {
+          script {        
+	   dockerImage = docker.build dockerimagename
+          }
         }
       }
-    }
+   }
 
     stage('Pushing Image') {
       environment {
