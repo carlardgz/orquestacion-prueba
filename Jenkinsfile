@@ -18,7 +18,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-         sh 'cd proyecto'
+         sh 'cd /home/rodriguez/orquestacion-prueba/proyecto'
 	 dockerImage = docker.build dockerimagename
         }
       }
