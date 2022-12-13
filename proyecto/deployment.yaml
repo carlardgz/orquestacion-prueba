@@ -37,7 +37,7 @@ spec:
   selector:
    app: proyecto
   type: LoadBalancer
-  loadBalancerIP: 148.213.1.154
+  loadBalancerIP: 148.213.1.150
   ports:
    - name: http
      port: 80
