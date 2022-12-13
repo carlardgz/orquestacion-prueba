@@ -64,20 +64,3 @@ pipeline {
   }
  }
 }
-  post{
-            success{
-            //slackSend "Build deployed successfully - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
-            slackSend channel: 'prueba_pipeline_haep', color: 'good', failOnError: true, message: "${custom_msg()}", teamDomain: 'universidadde-bea3869', tokenCredentialId: 'tokenslack'
-                  
-           }
-         }
-}
-
-  def custom_msg()
-  {
-  def JENKINS_URL= "148.213.5.79:8080"
-  def JOB_NAME = env.JOB_NAME
-  def BUILD_ID= env.BUILD_ID
-  def JENKINS_LOG= " DEPLOY LOG: Job [${env.JOB_NAME}] Logs path: ${JENKINS_URL}/job/${JOB_NAME}/${BUILD_ID}/consoleText"
-  return JENKINS_LOG
-  }
