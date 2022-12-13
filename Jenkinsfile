@@ -51,7 +51,7 @@ pipeline {
    steps{
     sshagent(['rodriguezssh'])
     {
-     sh 'scp -r -o StrictHostKeyChecking=no /proyecto/deployment.yaml digesetuser@148.213.1.131:/home/digesetuser/'
+     sh 'cd proyecto && scp -r -o StrictHostKeyChecking=no deployment.yaml digesetuser@148.213.1.131:/home/digesetuser/'
       script{
         try{
            sh 'ssh digesetuser@148.213.1.131 microk8s.kubectl apply -f  /proyecto/deployment.yaml --kubeconfig=/home/digesetuser/.kube/config'
