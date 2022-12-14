@@ -1,7 +1,8 @@
 pipeline {
 
   environment {
-    dockerimagename = "carlarodriguezag/orquestacion-prueba"
+    dockerimagename1 = "carlarodriguezag/proyecto-prueba"
+    dockerimagename2 = "carlarodriguezag/phpmyadmin-prueba"
     dockerImage = ""
   }
 
@@ -19,13 +20,13 @@ pipeline {
       steps{
 	dir('proyecto') {
           script {        
-	   dockerImage = docker.build dockerimagename
+	   dockerImage = docker.build dockerimagename1
           }
         }
 	
 	dir('phpmyadmin') {
 	 script {
-           dockerImage = docker.build dockerimagename
+           dockerImage = docker.build dockerimagename2
           }
         }
 
