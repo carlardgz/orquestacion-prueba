@@ -22,6 +22,13 @@ pipeline {
 	   dockerImage = docker.build dockerimagename
           }
         }
+	
+	dir('mysql') {
+	 script {
+           dockerImage = docker.build dockerimagename
+          }
+        }
+
       }
    }
 
@@ -45,7 +52,7 @@ pipeline {
    //       //sh 'microk8s.kubectl rollout restart prueba-gha'
    //     }        
    //   }
-   // 
+   // }
 
    stage('Restarting POD'){
    steps{
@@ -57,6 +64,14 @@ pipeline {
            sh 'ssh digesetuser@148.213.1.131 microk8s.kubectl apply -f deployment.yaml --kubeconfig=/home/digesetuser/.kube/config'
            sh 'ssh digesetuser@148.213.1.131 microk8s.kubectl rollout restart deployment proyecto --kubeconfig=/home/digesetuser/.kube/config' 
            sh 'ssh digesetuser@148.213.1.131 microk8s.kubectl rollout status deployment proyecto --kubeconfig=/home/digesetuser/.kube/config'
+          }
+     
+     sh 'cd mysql && scp -r -o StrictHostKeyChecking=no deployment.yaml digesetuser@148.213.1.131:/home/digesetuser/'
+      script{
+        try{
+           sh 'ssh digesetuser@148.213.1.131 microk8s.kubectl apply -f deployment.yaml --kubeconfig=/home/digesetuser/.kube/config'
+           sh 'ssh digesetuser@148.213.1.131 microk8s.kubectl rollout restart deployment mysql --kubeconfig=/home/digesetuser/.kube/config'
+           sh 'ssh digesetuser@148.213.1.131 microk8s.kubectl rollout status deployment mysql --kubeconfig=/home/digesetuser/.kube/config'
           }catch(error)
        {}
      }
