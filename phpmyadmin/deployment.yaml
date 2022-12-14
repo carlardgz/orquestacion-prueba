@@ -45,7 +45,8 @@ kind: Service
 metadata:
   name: phpmyadmin
 spec:
-  type: ClusterIP
+  type: LoadBalancer
+  loadBalancerIP: 148.213.1.151
   selector:
     app: phpmyadmin
   ports:
