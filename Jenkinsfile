@@ -23,7 +23,7 @@ pipeline {
           }
         }
 	
-	dir('mysql') {
+	dir('phpmyadmin') {
 	 script {
            dockerImage = docker.build dockerimagename
           }
