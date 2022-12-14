@@ -1,8 +1,8 @@
 pipeline {
 
   environment {
-    dockerimagename1 = "carlarodriguezag/proyecto-prueba"
-    dockerimagename2 = "carlarodriguezag/phpmyadmin-prueba"
+    dockerimagename1 = "carlarodriguezag/proyecto"
+    dockerimagename2 = "carlarodriguezag/phpmyadmin"
     dockerImage = ""
   }
 

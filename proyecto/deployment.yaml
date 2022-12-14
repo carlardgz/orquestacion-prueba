@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: proyecto
-          image: carlarodriguezag/proyecto-prueba:latest
+          image: carlarodriguezag/proyecto:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
