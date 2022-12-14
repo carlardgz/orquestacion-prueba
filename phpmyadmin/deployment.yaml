@@ -43,14 +43,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: phpmyadmin
+  name: phpmyadmin-service
 spec:
-  type: LoadBalancer
-  loadBalancerIP: 148.213.1.151
+  type: ClusterIP
   selector:
     app: phpmyadmin
   ports:
   - protocol: TCP
     port: 80
     targetPort: 80
-
