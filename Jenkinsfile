@@ -45,7 +45,7 @@ pipeline {
    //       //sh 'microk8s.kubectl rollout restart prueba-gha'
    //     }        
    //   }
-   // }
+   // 
 
    stage('Restarting POD'){
    steps{
