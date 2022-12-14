@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
         - name: phpmyadmin
-          image: udecdj2022/phpmyadmin:haep
+          image: carlarodriguezag/orquestacion-prueba:latest
           ports:
             - containerPort: 80
           env:
